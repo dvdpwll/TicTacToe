@@ -1,20 +1,51 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Example</title>
+      <title>Tic-Tac-Toe</title>
 
       <script src="vendor.bundle.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="bundle.js" type="text/javascript" charset="utf-8" defer></script>
+      <link href="https://fonts.googleapis.com/css?family=Tillana" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Eczar" rel="stylesheet">
     </head>
     <body class="container-fluid">
-      <h1>Example</h1>
+      <nav>
+        <form id="sign-up">
+          <input type="text" name="credentials[email]" placeholder="Email">
+          <input type="password" name="credentials[password]" placeholder="Password">
+          <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
+          <input type="submit" name="submit" value="Sign up!">
+        </form>
+      </nav>
+      <section id="topText">
+        <p class="GameName">Tic-Tac-Toe</p>
+        <p class="about">
+          This is a game of tic-tac-toe. Click on a square to place an 'x' or an 'o'.
+        </p>
+      </section>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-      ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.</p>
+      <section id="board">
+        <div class="Square zero"></div>
+        <div class="Square one"></div>
+        <div class="Square two"></div>
+        <div class="Square three"></div>
+        <div class="Square four"></div>
+        <div class="Square five"></div>
+        <div class="Square six"></div>
+        <div class="Square seven"></div>
+        <div class="Square eight"></div>
+      </section>
+
+      <section id="buttons">
+        <div class="buttOne"></div>
+        <div class="buttTwo"></div>
+      </section>
+
+      <section id="bottomText">
+        <p>Created by: David Powell<br>
+          Email: dvdpwll456@gmail.com<br>
+          <a href="#">LinkedIn</a>
+        </p>
+      </section>
     </body>
 </html>
