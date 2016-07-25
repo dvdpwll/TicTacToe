@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Tic-Tac-Toe</title>
+      <title>Tic-Tac-Toe jalf;jei</title>
 
       <link rel="stylesheet" type="text/css" href="./assets/styles/index.scss">
       <script src="vendor.bundle.js" type="text/javascript" charset="utf-8" defer></script>
@@ -28,17 +28,17 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">Sign Up</a></li>
-              <li><a href="#">Log In</a></li>
+              <li id="sign-up"><a href="#">Sign Up</a></li>
+              <li id="log-in"><a href="#">Log In</a></li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More Options<span class="caret"></span></a>
                 <!-- hide the dropdown menu later -->
                 <ul class="dropdown-menu">
-                  <li><a href="#">Change Password</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
+                  <li id="change-password"><a href="#">Change Password</a></li>
+                  <li id="new-game"><a href="#">New Game</a></li>
+                  <li id="clear-board"><a href="#">Clear Board</a></li>
                   <li role="separator" class="divider"></li>
-                  <li><a href="#">Log Out</a></li>
+                  <li id="log-out"><a href="#">Log Out</a></li>
                 </ul>
               </li>
             </ul>
@@ -48,17 +48,17 @@
       <!-- NAVBAR -->
       <!-- GAMEBOARD -->
       <div class="container gameboard">
-        <div class="row row0">
+        <div class="row">
           <div class="col-xs-3 square"></div>
           <div class="col-xs-3 square"></div>
           <div class="col-xs-3 square"></div>
         </div>
-        <div class="row row1">
+        <div class="row">
           <div class="col-xs-3 square"></div>
           <div class="col-xs-3 square"></div>
           <div class="col-xs-3 square"></div>
         </div>
-        <div class="row row2">
+        <div class="row">
           <div class="col-xs-3 square"></div>
           <div class="col-xs-3 square"></div>
           <div class="col-xs-3 square"></div>
@@ -72,6 +72,100 @@
         </p>
       </div>
       <!-- FOOTER -->
+      <!-- MODAL -->
+        <!-- Sign Up -->
+        <div id="sign-up-modal" class="modal fade" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Sign Up</h4>
+              </div>
+              <div class="modal-body">
+                <!-- Username -->
+                <div class="input-group">
+                  <span class="input-group-addon">Email</span>
+                  <input type="text" class="form-control"  id="sign-up-email" placeholder="Email" aria-describedby="basic-addon1">
+                </div>
+                <!-- Password -->
+                <div class="input-group">
+                  <span class="input-group-addon">Password</span>
+                  <input type="text" class="form-control"  id="sign-up-password" placeholder="Password" aria-describedby="basic-addon1">
+                </div>
+                <!-- Confirm Password -->
+                <div class="input-group">
+                  <span class="input-group-addon">Confirm Password</span>
+                  <input type="text" class="form-control"  id="sign-up-confirm-password" placeholder="Confirm Password" aria-describedby="basic-addon1">
+                </div>
+                <!-- End input fields -->
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="sign-up-submit">Submit</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
 
+        <!-- Log In -->
+        <div id="log-in-modal" class="modal fade" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Log In</h4>
+              </div>
+              <div class="modal-body">
+                <!-- Username -->
+                <div class="input-group">
+                  <span class="input-group-addon">Email</span>
+                  <input type="text" class="form-control"  id="log-in-email" placeholder="Email" aria-describedby="basic-addon1">
+                </div>
+                <!-- Password -->
+                <div class="input-group">
+                  <span class="input-group-addon">Password</span>
+                  <input type="text" class="form-control"  id="log-in-password" placeholder="Password" aria-describedby="basic-addon1">
+                </div>
+                <!-- End input fields -->
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="log-in-submit">Log In</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <!-- Change Password -->
+        <div id="change-password-modal" class="modal fade" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Change Password</h4>
+              </div>
+              <div class="modal-body">
+                <!-- Current password -->
+                <div class="input-group">
+                  <span class="input-group-addon">Current Password</span>
+                  <input type="text" class="form-control"  id="current-password" placeholder="Current Password" aria-describedby="basic-addon1">
+                </div>
+                <!-- New Password -->
+                <div class="input-group">
+                  <span class="input-group-addon">New Password</span>
+                  <input type="text" class="form-control"  id="new-password" placeholder="New Password" aria-describedby="basic-addon1">
+                </div>
+                <!-- End input fields -->
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="change-password-submit">Submit</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
+      <!-- MODAL -->
     </body>
 </html>
