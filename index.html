@@ -3,50 +3,66 @@
     <head>
       <title>Tic-Tac-Toe</title>
 
-      <link rel="stylesheet" type="text/css" href="index.css">
+      <link rel="stylesheet" type="text/css" href="./assets/styles/index.scss">
       <script src="vendor.bundle.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="bundle.js" type="text/javascript" charset="utf-8" defer></script>
       <link href="https://fonts.googleapis.com/css?family=Tillana" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css?family=Eczar" rel="stylesheet">
     </head>
     <body class="container-fluid">
-      <nav>
-        <form id="sign-up">
-          <input type="text" name="credentials[email]" placeholder="Email">
-          <input type="password" name="credentials[password]" placeholder="Password">
-          <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
-          <input type="submit" name="submit" value="Sign up!">
-        </form>
+
+      <!-- NAVBAR -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Tic-Tac-Toe</a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#">Sign Up</a></li>
+              <li><a href="#">Log In</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                <!-- hide the dropdown menu later -->
+                <ul class="dropdown-menu">
+                  <li><a href="#">Change Password</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#">Log Out</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
       </nav>
-      <section id="topText">
-        <p class="GameName">Tic-Tac-Toe</p>
-        <p class="about">
-          This is a game of tic-tac-toe. Click on a square to place an 'x' or an 'o'.
-        </p>
-      </section>
+      <!-- NAVBAR -->
+      <!-- GAMEBOARD -->
+      <div class="row">
+        <div class=".col-xs-4"></div>
+        <div class=".col-xs-4"></div>
+        <div class=".col-xs-4"></div>
+      </div>
+      <div class="row">
+        <div class=".col-xs-4"></div>
+        <div class=".col-xs-4"></div>
+        <div class=".col-xs-4"></div>
+      </div>
+      <div class="row">
+        <div class=".col-xs-4"></div>
+        <div class=".col-xs-4"></div>
+        <div class=".col-xs-4"></div>
+      </div>
+      <!-- GAMEBOARD -->
 
-      <section id="board">
-        <div class="Square zero"></div>
-        <div class="Square one"></div>
-        <div class="Square two"></div>
-        <div class="Square three"></div>
-        <div class="Square four"></div>
-        <div class="Square five"></div>
-        <div class="Square six"></div>
-        <div class="Square seven"></div>
-        <div class="Square eight"></div>
-      </section>
-
-      <section id="buttons">
-        <div class="buttOne"></div>
-        <div class="buttTwo"></div>
-      </section>
-
-      <section id="bottomText">
-        <p>Created by: David Powell<br>
-          Email: dvdpwll456@gmail.com<br>
-          <a href="#">LinkedIn</a>
-        </p>
-      </section>
     </body>
 </html>
