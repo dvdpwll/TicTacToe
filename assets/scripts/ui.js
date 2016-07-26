@@ -1,6 +1,6 @@
 'use strict';
 
-const app = require('./app');
+const appVar = require('./app');
 
 const success = (data) => {
   console.log(data);
@@ -11,8 +11,8 @@ const failure = (error) => {
 };
 
 const signInSuccess = (data) => {
-  app.user = data.user;
-  console.log(app);
+  appVar.app.user = data.user;
+  console.log(appVar);
 };
 
 

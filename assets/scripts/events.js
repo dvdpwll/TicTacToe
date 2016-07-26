@@ -73,8 +73,22 @@ const onChangePassword = function () {
     //get text fields
     let oldPassword = $('#current-password').val();
     let NewPassword = $('#new-password').val();
-    console.log(oldPassword);
-    console.log(NewPassword);
+    // console.log(oldPassword);
+    // console.log(NewPassword);
+
+    let data = {
+      "passwords": {
+        "old": oldPassword,
+        "new": NewPassword,
+      }
+    };
+    console.log(data);
+
+    //send data to api
+    api.changePassword(data)
+      .done(ui.success)
+      .fail(ui.failure);
+
     //close modal
     $('#change-password-modal').modal('hide');
   });
