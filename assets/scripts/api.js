@@ -9,7 +9,15 @@ const signUp = (data) => $.ajax({
     data,
   });
 
+  const logIn = (data) => $.ajax({
+      url: appVar.app.api + '/sign-in',
+      method: 'POST',
+      //data: data,
+      data,
+    });
+
 
 module.exports = {
   signUp,
+  logIn,
 };

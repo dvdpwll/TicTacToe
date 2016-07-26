@@ -3,16 +3,21 @@
 const app = require('./app');
 
 const success = (data) => {
-  console.log('yes');
   console.log(data);
 };
 
 const failure = (error) => {
-  console.log('no');
   console.error(error);
 };
+
+const signInSuccess = (data) => {
+  app.user = data.user;
+  console.log(app);
+};
+
 
 module.exports = {
   success,
   failure,
+  signInSuccess,
 };

@@ -14,9 +14,7 @@ const onSignUp = function () {
     let email = $('#sign-up-email').val();
     let password = $('#sign-up-password').val();
     let password_confirmation = $('#sign-up-confirm-password').val();
-    // console.log(email);
-    // console.log(password);
-    // console.log(confirmPassword);
+
     //put information into data object
     let data = {
       "credentials": {
@@ -26,24 +24,10 @@ const onSignUp = function () {
       }
     };
 
-
-    //console.log(data);
     //send data to api
     api.signUp(data)
       .done(ui.success)
       .fail(ui.failure);
-
-    /*
-    const onSignUp = function (event) {
-    let data = getFormFields(this);
-    event.preventDefault();
-    // api.signUp(ui.success, ui.failure, data);
-    api.signUp(data)
-      .done(ui.success)
-      .fail(ui.failure);
-    };
-    */
-
 
     //close modal
     $('#sign-up-modal').modal('hide');
@@ -59,8 +43,22 @@ const onLogIn = function () {
     //get text fields
     let email = $('#log-in-email').val();
     let password = $('#log-in-password').val();
-    console.log(email);
-    console.log(password);
+    // console.log(email);
+    // console.log(password);
+
+    //put information into data object
+    let data = {
+      "credentials": {
+        "email": email,
+        "password": password,
+      }
+    };
+
+    //send data to api
+    api.logIn(data)
+      .done(ui.signInSuccess)
+      .fail(ui.failure);
+
     //close modal
     $('#log-in-modal').modal('hide');
   });
