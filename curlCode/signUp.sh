@@ -3,9 +3,9 @@
 #curl "http://localhost:3000/sign-up" \
 
 
-# API="http://httpbin.org/post"
+API="http://httpbin.org/post"
 # API="http://localhost:3000/sign-up"
-API="http://tic-tac-toe.wdibos.com/sign-up/"
+# API="http://tic-tac-toe.wdibos.com/sign-up/"
 E='aaaa'
 P='bbbb'
 P_C='bbbb'

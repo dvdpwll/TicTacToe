@@ -1,13 +1,13 @@
 'use strict';
 
-const app = require('./app');
+const appVar = require('./app');
 
 const signUp = (data) => $.ajax({
-  url: app.api + '/sign-up',
-  method: 'POST',
-  data,
-});
-
+    url: appVar.app.api + '/sign-up',
+    method: 'POST',
+    //data: data,
+    data,
+  });
 
 
 module.exports = {
