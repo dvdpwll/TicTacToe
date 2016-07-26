@@ -34,6 +34,9 @@ const onSignUp = function () {
   });
 };
 
+
+
+
 //user log in
 const onLogIn = function () {
   //console.log('logged in');
@@ -58,6 +61,10 @@ const onLogIn = function () {
     api.logIn(data)
       .done(ui.signInSuccess)
       .fail(ui.failure);
+
+      $('.dropdown-toggle').show();
+      $('#sign-up').hide();
+      $('#log-in').hide();
 
     //close modal
     $('#log-in-modal').modal('hide');
@@ -96,7 +103,14 @@ const onChangePassword = function () {
 
 //user log out
 const onLogOut = function () {
-  console.log('logged out');
+  //console.log('logged out');
+  api.signOut()
+    .done(ui.signOutSuccess)
+    .fail(ui.failure);
+
+    $('.dropdown-toggle').hide();
+    $('#sign-up').show();
+    $('#log-in').show();
 };
 
 //user new game
@@ -116,7 +130,16 @@ const addHandlers = () => {
   $('#change-password').on('click', onChangePassword);
   $('#new-game').on('click', onNewGame);
   $('#clear-board').on('click', onClearBoard);
+  $('.dropdown-toggle').hide();
 };
+
+/*
+$('#loading').css("visibility", "visible");
+$("p").toggle();
+$('#loading').show();
+$('.collapse').collapse()
+*/
+
 
 module.exports = {
   addHandlers,

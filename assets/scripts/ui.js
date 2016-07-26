@@ -15,9 +15,14 @@ const signInSuccess = (data) => {
   console.log(appVar);
 };
 
+const signOutSuccess = () => {
+  delete appVar.app.user;
+  console.log(appVar);
+};
 
 module.exports = {
   success,
   failure,
   signInSuccess,
+  signOutSuccess,
 };

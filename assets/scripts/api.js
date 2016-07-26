@@ -26,9 +26,17 @@ const changePassword = (data) => $.ajax({
   data,
 });
 
+const signOut = () => $.ajax({
+  url: appVar.app.api + '/sign-out/' + appVar.app.user.id,
+  method: 'DELETE',
+  headers: {
+    Authorization: 'Token token=' + appVar.app.user.token,
+  },
+});
 
 module.exports = {
   signUp,
   logIn,
   changePassword,
+  signOut,
 };
