@@ -2,8 +2,6 @@
 const api = require('./api');
 const ui = require('./ui');
 
-const getFormFields = require('../../lib/get-form-fields');
-
 //user sign up
 const onSignUp = function () {
   //console.log('sign up');
@@ -33,9 +31,6 @@ const onSignUp = function () {
     $('#sign-up-modal').modal('hide');
   });
 };
-
-
-
 
 //user log in
 const onLogIn = function () {
@@ -123,6 +118,36 @@ const onClearBoard = function () {
   console.log('Clear Board');
 };
 
+//gameplay ---------------------------------------!!!!!!!!!!
+let xImg = '<img src="./assets/X.png">';//change this if you change the img file for x.
+let oImg = '<img src="./assets/O.png">';//change this if you change the img file for o.
+let turn = 0;//x's are even, o's are odd
+let boardArray = ["", "", "", "", "", "", "", "", ""];
+
+//after click put x or o
+const onMove = function () {
+  //console.log(turn);
+  //check to see if square is empty
+  if ( ($(this).html()) !== xImg && ($(this).html()) !== oImg) {
+    let arrIndex = $(this).attr('data-square');
+    console.log(arrIndex);
+
+    if (turn%2 === 0) {
+      $(this).prepend(xImg);
+      turn++;
+      boardArray[arrIndex] = 'x';
+    }
+    else {
+      $(this).prepend(oImg);
+      turn++;
+      boardArray[arrIndex] = 'o';
+    }
+  }
+  console.log(boardArray);
+};
+
+
+
 const addHandlers = () => {
   $('#sign-up').on('click', onSignUp);
   $('#log-in').on('click', onLogIn);
@@ -131,15 +156,16 @@ const addHandlers = () => {
   $('#new-game').on('click', onNewGame);
   $('#clear-board').on('click', onClearBoard);
   $('.dropdown-toggle').hide();
+  $('#tileZero').on('click', onMove);
+  $('#tileOne').on('click', onMove);
+  $('#tileTwo').on('click', onMove);
+  $('#tileThree').on('click', onMove);
+  $('#tileFour').on('click', onMove);
+  $('#tileFive').on('click', onMove);
+  $('#tileSix').on('click', onMove);
+  $('#tileSeven').on('click', onMove);
+  $('#tileEight').on('click', onMove);
 };
-
-/*
-$('#loading').css("visibility", "visible");
-$("p").toggle();
-$('#loading').show();
-$('.collapse').collapse()
-*/
-
 
 module.exports = {
   addHandlers,
