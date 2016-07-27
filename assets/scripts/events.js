@@ -1,6 +1,11 @@
 'use strict';
 const api = require('./api');
 const ui = require('./ui');
+//variables
+let xImg = '<img class="played" src="./assets/X.png">';//change this if you change the img file for x.
+let oImg = '<img class="played" src="./assets/O.png">';//change this if you change the img file for o.
+let turn = 0;//x's are even, o's are odd
+let boardArray = ["", "", "", "", "", "", "", "", ""];
 
 //user sign up
 const onSignUp = function () {
@@ -96,6 +101,18 @@ const onChangePassword = function () {
   });
 };
 
+const onWinner = function (char) {
+  //console.log('logged in');
+  let string = char + ' is the winner!';
+  $('#display-winner-modal').modal('show');
+  $('#winner-body').prepend("<p>" + string + "</p>");
+  $('.square').off();
+  $('#display-winner-ok').on('click',function(){
+    //close modal
+    $('#display-winner-modal').modal('hide');
+  });
+};
+
 //user log out
 const onLogOut = function () {
   //console.log('logged out');
@@ -115,35 +132,84 @@ const onNewGame = function () {
 
 //user clear board
 const onClearBoard = function () {
-  console.log('Clear Board');
+  //console.log('Clear Board');
+  //clear array
+  for (let i = 0; i < boardArray.length; i++) {
+    boardArray[i] = "";
+  }
+  //clear images
+  $('.played').remove();
+  turn = 0;
 };
 
 //gameplay ---------------------------------------!!!!!!!!!!
-let xImg = '<img src="./assets/X.png">';//change this if you change the img file for x.
-let oImg = '<img src="./assets/O.png">';//change this if you change the img file for o.
-let turn = 0;//x's are even, o's are odd
-let boardArray = ["", "", "", "", "", "", "", "", ""];
+
+//check to see if a player has won.
+const checkWinner = function (array, char) {
+  //check colums
+  if (array[0] === char && array[3] === char && array[6] === char) {
+    //console.log(char + ' wins');
+    onWinner(char);
+  }
+  else if (array[1] === char && array[4] === char && array[7] === char) {
+    //console.log(char + ' wins');
+    onWinner(char);
+  }
+  else if (array[2] === char && array[5] === char && array[8] === char) {
+    //console.log(char + ' wins');
+    onWinner(char);
+  }
+  //check rows
+  else if (array[0] === char && array[1] === char && array[2] === char) {
+    //console.log(char + ' wins');
+    onWinner(char);
+  }
+  else if (array[3] === char && array[4] === char && array[5] === char) {
+    //console.log(char + ' wins');
+    onWinner(char);
+  }
+  else if (array[6] === char && array[7] === char && array[8] === char) {
+    //console.log(char + ' wins');
+    onWinner(char);
+  }
+  //check diagonals
+  else if (array[0] === char && array[4] === char && array[8] === char) {
+    //console.log(char + ' wins');
+    onWinner(char);
+  }
+  else if (array[2] === char && array[4] === char && array[6] === char) {
+    //console.log(char + ' wins');
+    onWinner(char);
+  }
+};
 
 //after click put x or o
 const onMove = function () {
   //console.log(turn);
   //check to see if square is empty
   if ( ($(this).html()) !== xImg && ($(this).html()) !== oImg) {
+    //get index of square
     let arrIndex = $(this).attr('data-square');
-    console.log(arrIndex);
+    //console.log(arrIndex);
 
     if (turn%2 === 0) {
+      //add img to tile
       $(this).prepend(xImg);
       turn++;
+      //add move to boardArray
       boardArray[arrIndex] = 'x';
+      checkWinner(boardArray, 'x');
     }
     else {
+      //add img to tile
       $(this).prepend(oImg);
       turn++;
+      //add move to boardArray
       boardArray[arrIndex] = 'o';
+      checkWinner(boardArray, 'o');
     }
   }
-  console.log(boardArray);
+  //console.log(boardArray);
 };
 
 
