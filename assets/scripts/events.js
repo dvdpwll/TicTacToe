@@ -108,8 +108,9 @@ const onWinner = function (char) {
   let string = char + ' is the winner!';
   $('#display-winner-modal').modal('show');
   $('#winner-body').prepend("<p>" + string + "</p>");
-  $('.square').off();
   gameOver = true;
+  $('.square').data('closed', 1);
+
   $('#display-winner-ok').on('click',function(){
     //close modal
     $('#display-winner-modal').modal('hide');
@@ -122,8 +123,9 @@ const onTie = function () {
   let string = "Cats Game!";
   $('#display-winner-modal').modal('show');
   $('#winner-body').prepend("<p>" + string + "</p>");
-  $('.square').off();
   gameOver = true;
+  $('.square').data('closed', 1);
+
   $('#display-winner-ok').on('click',function(){
     //close modal
     $('#display-winner-modal').modal('hide');
@@ -144,10 +146,11 @@ const onLogOut = function () {
 
 //user new game
 const onNewGame = function () {
-  $('.square').on();
   //console.log('New Game');
   //let userID = api.appVar.app.user.id;
   let data = {};
+  $('.square').data('closed', 0);
+  console.log($('.square').data('closed'));
 
   api.newGame(data)
     .done(ui.createGameSuccess)
@@ -260,9 +263,9 @@ const checkWinner = function (array, char, turns) {
 const onMove = function () {
   //console.log(turn);
   //check to see if square is empty
-  if ( ($(this).html()) !== xImg && ($(this).html()) !== oImg) {
+  if ( ($(this).html()) !== xImg && ($(this).html()) !== oImg && ($(this).data('closed')) === 0 ) {
     //get index of square
-    let arrIndex = $(this).attr('data-square');
+    let arrIndex = $(this).data('square');
     //console.log(arrIndex);
 
     if (turn%2 === 0) {
@@ -274,7 +277,7 @@ const onMove = function () {
       checkWinner(boardArray, 'x', turn);
       updateGame(arrIndex, 'x', gameOver);
     }
-    else {
+    else if (turn%2 !== 0){
       //add img to tile
       $(this).prepend(oImg);
       turn++;
