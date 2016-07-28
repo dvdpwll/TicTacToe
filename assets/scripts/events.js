@@ -102,9 +102,24 @@ const onChangePassword = function () {
   });
 };
 
+//display who wins
 const onWinner = function (char) {
   //console.log('logged in');
   let string = char + ' is the winner!';
+  $('#display-winner-modal').modal('show');
+  $('#winner-body').prepend("<p>" + string + "</p>");
+  $('.square').off();
+  gameOver = true;
+  $('#display-winner-ok').on('click',function(){
+    //close modal
+    $('#display-winner-modal').modal('hide');
+  });
+};
+
+//display tie
+const onTie = function () {
+  //console.log('logged in');
+  let string = "Cats Game!";
   $('#display-winner-modal').modal('show');
   $('#winner-body').prepend("<p>" + string + "</p>");
   $('.square').off();
@@ -129,6 +144,7 @@ const onLogOut = function () {
 
 //user new game
 const onNewGame = function () {
+  $('.square').on();
   //console.log('New Game');
   //let userID = api.appVar.app.user.id;
   let data = {};
@@ -199,9 +215,9 @@ const onClearBoard = function () {
 //gameplay ---------------------------------------!!!!!!!!!!
 
 //check to see if a player has won.
-const checkWinner = function (array, char) {
+const checkWinner = function (array, char, turns) {
   //check colums
-  if (array[0] === char && array[3] === char && array[6] === char) {
+  if (array[0] === char && array[3] === char && array[6] === char && turns) {
     //console.log(char + ' wins');
     onWinner(char);
   }
@@ -235,6 +251,9 @@ const checkWinner = function (array, char) {
     //console.log(char + ' wins');
     onWinner(char);
   }
+  else if (turns > 8) {
+    onTie();
+  }
 };
 
 //after click put x or o
@@ -252,7 +271,7 @@ const onMove = function () {
       turn++;
       //add move to boardArray
       boardArray[arrIndex] = 'x';
-      checkWinner(boardArray, 'x');
+      checkWinner(boardArray, 'x', turn);
       updateGame(arrIndex, 'x', gameOver);
     }
     else {
@@ -261,7 +280,7 @@ const onMove = function () {
       turn++;
       //add move to boardArray
       boardArray[arrIndex] = 'o';
-      checkWinner(boardArray, 'o');
+      checkWinner(boardArray, 'o', turn);
       updateGame(arrIndex, 'o', gameOver);
     }
   }
