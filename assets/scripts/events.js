@@ -6,6 +6,7 @@ let xImg = '<img class="played" src="./assets/X.png">';//change this if you chan
 let oImg = '<img class="played" src="./assets/O.png">';//change this if you change the img file for o.
 let turn = 0;//x's are even, o's are odd
 let boardArray = ["", "", "", "", "", "", "", "", ""];
+let gameOver = false;
 
 //user sign up
 const onSignUp = function () {
@@ -107,6 +108,7 @@ const onWinner = function (char) {
   $('#display-winner-modal').modal('show');
   $('#winner-body').prepend("<p>" + string + "</p>");
   $('.square').off();
+  gameOver = true;
   $('#display-winner-ok').on('click',function(){
     //close modal
     $('#display-winner-modal').modal('hide');
@@ -127,7 +129,59 @@ const onLogOut = function () {
 
 //user new game
 const onNewGame = function () {
-  console.log('New Game');
+  //console.log('New Game');
+  //let userID = api.appVar.app.user.id;
+  let data = {};
+
+  api.newGame(data)
+    .done(ui.createGameSuccess)
+    .fail(ui.failure);
+};
+
+//send moves to server
+const updateGame = function (i, v, o) {
+  let data = {
+    "game": {
+      "cell": {
+        "index": i,
+        "value": v
+      },
+      "over": o
+    }
+  };
+
+  api.updateTheGame(data)
+    .done(ui.success)
+    .fail(ui.failure);
+};
+
+//user loads games
+const onLoadGame = function () {
+  //console.log('logged in');
+  $('#load-game-modal').modal('show');
+  $('#load-game-submit').on('click',function(){
+    //console.log('log in pressed');
+    //get text fields
+    let gameId = $('#load-game-id').val();
+    console.log(gameId);
+    // console.log(password);
+
+    //put information into data object
+    // let data = {
+    //   "credentials": {
+    //     "email": email,
+    //     "password": password,
+    //   }
+    // };
+
+    //send data to api
+    // api.loadGame(data)
+    //   .done(ui.success)
+    //   .fail(ui.failure);
+
+    //close modal
+    $('#load-game-modal').modal('hide');
+  });
 };
 
 //user clear board
@@ -199,6 +253,7 @@ const onMove = function () {
       //add move to boardArray
       boardArray[arrIndex] = 'x';
       checkWinner(boardArray, 'x');
+      updateGame(arrIndex, 'x', gameOver);
     }
     else {
       //add img to tile
@@ -207,12 +262,10 @@ const onMove = function () {
       //add move to boardArray
       boardArray[arrIndex] = 'o';
       checkWinner(boardArray, 'o');
+      updateGame(arrIndex, 'o', gameOver);
     }
   }
-  //console.log(boardArray);
 };
-
-
 
 const addHandlers = () => {
   $('#sign-up').on('click', onSignUp);
@@ -220,6 +273,7 @@ const addHandlers = () => {
   $('#log-out').on('click', onLogOut);
   $('#change-password').on('click', onChangePassword);
   $('#new-game').on('click', onNewGame);
+  $('#load-game').on('click', onLoadGame);
   $('#clear-board').on('click', onClearBoard);
   $('.dropdown-toggle').hide();
   $('#tileZero').on('click', onMove);

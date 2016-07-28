@@ -3,14 +3,14 @@
 const appVar = require('./app');
 
 const signUp = (data) => $.ajax({
-    url: appVar.app.api + '/sign-up',
+    url: appVar.app.api + 'sign-up',
     method: 'POST',
     //data: data,
     data,
   });
 
 const logIn = (data) => $.ajax({
-    url: appVar.app.api + '/sign-in',
+    url: appVar.app.api + 'sign-in',
     method: 'POST',
     //data: data,
     data,
@@ -27,11 +27,31 @@ const changePassword = (data) => $.ajax({
 });
 
 const signOut = () => $.ajax({
-  url: appVar.app.api + '/sign-out/' + appVar.app.user.id,
+  url: appVar.app.api + 'sign-out/' + appVar.app.user.id,
   method: 'DELETE',
   headers: {
     Authorization: 'Token token=' + appVar.app.user.token,
   },
+});
+
+const newGame = (data) => $.ajax({
+  url: appVar.app.api + 'games',
+  method: 'POST',
+  headers: {
+    Authorization: 'Token token=' + appVar.app.user.token,
+  },
+  //data: data,
+  data,
+});
+
+const updateTheGame = (data) => $.ajax({
+  url: appVar.app.api + 'games/' + appVar.app.game.id,
+  method: 'PATCH',
+  headers: {
+    Authorization: 'Token token=' + appVar.app.user.token,
+  },
+  //data: data,
+  data,
 });
 
 module.exports = {
@@ -39,4 +59,7 @@ module.exports = {
   logIn,
   changePassword,
   signOut,
+  newGame,
+  updateTheGame,
+  appVar,
 };
