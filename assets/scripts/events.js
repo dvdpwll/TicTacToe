@@ -1,6 +1,7 @@
 'use strict';
 const api = require('./api');
 const ui = require('./ui');
+
 //variables
 let xImg = '<img class="played" src="./assets/X.png">';//change this if you change the img file for x.
 let oImg = '<img class="played" src="./assets/O.png">';//change this if you change the img file for o.
@@ -150,7 +151,7 @@ const onNewGame = function () {
   //let userID = api.appVar.app.user.id;
   let data = {};
   $('.square').data('closed', 0);
-  console.log($('.square').data('closed'));
+  //console.log($('.square').data('closed'));
 
   api.newGame(data)
     .done(ui.createGameSuccess)
@@ -182,21 +183,11 @@ const onLoadGame = function () {
     //console.log('log in pressed');
     //get text fields
     let gameId = $('#load-game-id').val();
-    console.log(gameId);
-    // console.log(password);
+    //console.log(gameId);
 
-    //put information into data object
-    // let data = {
-    //   "credentials": {
-    //     "email": email,
-    //     "password": password,
-    //   }
-    // };
-
-    //send data to api
-    // api.loadGame(data)
-    //   .done(ui.success)
-    //   .fail(ui.failure);
+    api.loadGame(gameId)
+      .done(ui.loadSuccess)
+      .fail(ui.failure);
 
     //close modal
     $('#load-game-modal').modal('hide');
