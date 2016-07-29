@@ -265,9 +265,8 @@ const onSeeAllGames = function () {
 const onClearBoard = function () {
   //console.log('Clear Board');
   //clear array
-  for (let i = 0; i < boardArray.length; i++) {
-    boardArray[i] = "";
-  }
+  boardArray = ["", "", "", "", "", "", "", "", ""];
+
   //clear images
   $('.played').remove();
   turn = 0;
