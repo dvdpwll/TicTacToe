@@ -3,20 +3,22 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import 'colors';
 
 .gameboard {
-  background-color: $boardColor;
-  height: 500px;
-  max-width: 500px;
+  background-color: $pureWhite;
+  height: 450px;
+  max-width: 450px;
 }
 
 .square {
   border: 2px solid $gridColor;
   height: 150px;
   max-width: 150px;
+  padding: 0;
 }
 
 .square > img {
-  height: 100px;
-  width: 100px;
+  height: 140px;
+  width: 140px;
+  padding: 0;
 }
 
 // .dropdown-toggle {
