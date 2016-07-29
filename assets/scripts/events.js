@@ -3,8 +3,10 @@ const api = require('./api');
 const ui = require('./ui');
 
 //variables
-let xImg = '<img class="played" src="./assets/X.png">';//change this if you change the img file for x.
-let oImg = '<img class="played" src="./assets/O.png">';//change this if you change the img file for o.
+let xImg = '<img class="played" src="./assets/pokeX.gif">';//change this if you change the img file for x.
+let oImg = '<img class="played" src="./assets/pokeO.gif">';//change this if you change the img file for o.
+let pokemonX = 'Bulbasaur';
+let pokemonO = 'Charmander';
 let turn = 0;//x's are even, o's are odd
 let boardArray = ["", "", "", "", "", "", "", "", ""];
 let gameOver = false;
@@ -106,6 +108,12 @@ const onChangePassword = function () {
 //display who wins
 const onWinner = function (char) {
   //console.log('logged in');
+  if (char === 'x') {
+    char = pokemonX;
+  }
+  else if (char === 'o') {
+    char = pokemonO;
+  }
   let string = char + ' is the winner!';
   $('#display-winner-modal').modal('show');
   $('#winner-body').prepend("<p>" + string + "</p>");

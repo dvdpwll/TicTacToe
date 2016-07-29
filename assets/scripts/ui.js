@@ -1,8 +1,5 @@
 'use strict';
 
-let xImg = '<img class="played" src="./assets/X.png">';//change this if you change the img file for x.
-let oImg = '<img class="played" src="./assets/O.png">';//change this if you change the img file for o.
-
 const appVar = require('./app');
 
 const success = (data) => {
