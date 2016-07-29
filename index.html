@@ -36,7 +36,8 @@
                 <ul class="dropdown-menu">
                   <li id="change-password"><a href="#">Change Password</a></li>
                   <li id="new-game"><a href="#">New Game</a></li>
-                  <li id="load-game"><a href="#">Load Games</a></li>
+                  <li id="load-game"><a href="#">Load Game</a></li>
+                  <li id="see-all-games"><a href="#">See All Games</a></li>
                   <li id="clear-board"><a href="#">Clear Board</a></li>
                   <li role="separator" class="divider"></li>
                   <li id="log-out"><a href="#">Log Out</a></li>
@@ -203,6 +204,24 @@
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-primary" id="load-game-submit">Submit</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <!-- Show All Games -->
+        <div id="show-all-games-modal" class="modal fade" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">All Games</h4>
+              </div>
+              <div class="modal-body" id="show-all-games-body">
+                <!-- js will insert all games here -->
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
               </div>
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->

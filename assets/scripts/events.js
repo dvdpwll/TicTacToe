@@ -91,7 +91,7 @@ const onChangePassword = function () {
         "new": NewPassword,
       }
     };
-    console.log(data);
+    //console.log(data);
 
     //send data to api
     api.changePassword(data)
@@ -175,6 +175,43 @@ const updateGame = function (i, v, o) {
     .fail(ui.failure);
 };
 
+//make changes to screen from what we loaded form server
+const displayLoad = (data) => {
+  api.appVar.app.load = data.game;
+  api.appVar.app.game = data.game;
+
+  let arrayLoad = [];
+  arrayLoad = api.appVar.app.game.cells;
+
+  $('.square').each(function(){
+    //console.log(this);
+    //console.log(arrayLoad.length);
+    for (let i = 0; i < arrayLoad.length; i++) {
+      //console.log('eeeee');
+      let arrIndex = $(this).data('square');
+      if (i === $(this).data('square')) {
+        //console.log('aaaaa');
+        if (arrayLoad[$(this).data('square')] === 'x') {
+          $(this).data('closed', 1);
+          $(this).prepend(xImg);
+          boardArray[arrIndex] = 'x';
+          turn++;
+        }
+        else if (arrayLoad[$(this).data('square')] === 'o') {
+          $(this).data('closed', 2);
+          $(this).prepend(oImg);
+          boardArray[arrIndex] = 'o';
+          turn++;
+        }
+        else if (arrayLoad[$(this).data('square')] === '') {
+          $(this).data('closed', 0);
+        }
+      }
+    }
+    delete api.appVar.app.load;
+  });
+};
+
 //user loads games
 const onLoadGame = function () {
   //console.log('logged in');
@@ -184,14 +221,36 @@ const onLoadGame = function () {
     //get text fields
     let gameId = $('#load-game-id').val();
     //console.log(gameId);
-
     api.loadGame(gameId)
-      .done(ui.loadSuccess)
+      .done(displayLoad)
       .fail(ui.failure);
 
     //close modal
     $('#load-game-modal').modal('hide');
   });
+};
+
+const displayAllGames = function (data) {
+  console.log(data);
+  console.log(data.games[10].id);
+  //console.log(data);
+  //console.log(data);
+  $('#show-all-games-body').append("<p>Game #:    GameOver: </p>");
+  for (let i = 0; i < data.games.length; i++) {
+    $('#show-all-games-body').append("<p>" + data.games[i].id + " " +  data.games[i].over + "</p>");
+  }
+  //let string = 'jidfjisdfroijdfgsjiodrfg';
+
+
+};
+
+//user sees all games
+const onSeeAllGames = function () {
+  $('#show-all-games-modal').modal('show');
+  //let data;
+  api.seeAllGames()
+    .done(displayAllGames)
+    .fail(ui.failure);
 };
 
 //user clear board
@@ -280,6 +339,7 @@ const onMove = function () {
   }
 };
 
+
 const addHandlers = () => {
   $('#sign-up').on('click', onSignUp);
   $('#log-in').on('click', onLogIn);
@@ -287,6 +347,7 @@ const addHandlers = () => {
   $('#change-password').on('click', onChangePassword);
   $('#new-game').on('click', onNewGame);
   $('#load-game').on('click', onLoadGame);
+  $('#see-all-games').on('click', onSeeAllGames);
   $('#clear-board').on('click', onClearBoard);
   $('.dropdown-toggle').hide();
   $('#tileZero').on('click', onMove);

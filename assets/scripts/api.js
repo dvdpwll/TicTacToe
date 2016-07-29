@@ -57,6 +57,16 @@ const updateTheGame = (data) => $.ajax({
 const loadGame = (data) => $.ajax({
   url: appVar.app.api + 'games/' + data,
   method: 'GET',
+  //async: false,
+  headers: {
+    Authorization: 'Token token=' + appVar.app.user.token,
+  },
+});
+
+const seeAllGames = () => $.ajax({
+  url: appVar.app.api + 'games/',
+  method: 'GET',
+  //async: false,
   headers: {
     Authorization: 'Token token=' + appVar.app.user.token,
   },
@@ -71,4 +81,5 @@ module.exports = {
   updateTheGame,
   appVar,
   loadGame,
+  seeAllGames,
 };
