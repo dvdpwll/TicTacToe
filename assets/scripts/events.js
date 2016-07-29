@@ -240,7 +240,7 @@ const onLoadGame = function () {
 
 const displayAllGames = function (data) {
   console.log(data);
-  console.log(data.games[10].id);
+  //console.log(data.games[10].id);
   //console.log(data);
   //console.log(data);
   $('#show-all-games-body').append("<p>Game #:    GameOver: </p>");

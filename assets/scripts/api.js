@@ -3,14 +3,14 @@
 const appVar = require('./app');
 
 const signUp = (data) => $.ajax({
-    url: appVar.app.api + 'sign-up',
+    url: appVar.app.api + 'sign-up/',
     method: 'POST',
     //data: data,
     data,
   });
 
 const logIn = (data) => $.ajax({
-    url: appVar.app.api + 'sign-in',
+    url: appVar.app.api + 'sign-in/',
     method: 'POST',
     //data: data,
     data,
@@ -35,7 +35,7 @@ const signOut = () => $.ajax({
 });
 
 const newGame = (data) => $.ajax({
-  url: appVar.app.api + 'games',
+  url: appVar.app.api + 'games/',
   method: 'POST',
   headers: {
     Authorization: 'Token token=' + appVar.app.user.token,
