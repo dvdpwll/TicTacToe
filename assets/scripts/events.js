@@ -186,10 +186,10 @@ const updateGame = function (i, v, o) {
 //make changes to screen from what we loaded form server
 const displayLoad = (data) => {
   api.appVar.app.load = data.game;
-  api.appVar.app.game = data.game;
+  //api.appVar.app.game = data.game;
 
   let arrayLoad = [];
-  arrayLoad = api.appVar.app.game.cells;
+  arrayLoad = api.appVar.app.load.cells;
 
   $('.square').each(function(){
     //console.log(this);
@@ -198,7 +198,7 @@ const displayLoad = (data) => {
       //console.log('eeeee');
       let arrIndex = $(this).data('square');
       if (i === $(this).data('square')) {
-        //console.log('aaaaa');
+        //console.log('aaaaa');erve
         if (arrayLoad[$(this).data('square')] === 'x') {
           $(this).data('closed', 1);
           $(this).prepend(xImg);
