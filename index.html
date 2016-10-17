@@ -28,6 +28,7 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
+              <li id="clear-board"><a href="#">Clear Board</a></li>
               <li id="sign-up"><a href="#">Sign Up</a></li>
               <li id="log-in"><a href="#">Log In</a></li>
               <li class="dropdown">
@@ -38,7 +39,6 @@
                   <li id="new-game"><a href="#">New Game</a></li>
                   <!-- <li id="load-game"><a href="#">Load Game</a></li> -->
                   <li id="see-all-games"><a href="#">See All Games</a></li>
-                  <li id="clear-board"><a href="#">Clear Board</a></li>
                   <li role="separator" class="divider"></li>
                   <li id="log-out"><a href="#">Log Out</a></li>
                 </ul>
@@ -51,26 +51,29 @@
       <!-- GAMEBOARD -->
       <div class="container gameboard">
         <div class="row">
-          <div id="tileZero" class="col-xs-4 square" data-square="0" data-closed="1"></div>
-          <div id="tileOne" class="col-xs-4 square" data-square="1" data-closed="1"></div>
-          <div id="tileTwo" class="col-xs-4 square" data-square="2" data-closed="1"></div>
+          <div id="tileZero" class="col-xs-4 square" data-square="0" data-closed="0"></div>
+          <div id="tileOne" class="col-xs-4 square" data-square="1" data-closed="0"></div>
+          <div id="tileTwo" class="col-xs-4 square" data-square="2" data-closed="0"></div>
         </div>
         <div class="row">
-          <div id="tileThree" class="col-xs-4 square" data-square="3" data-closed="1"></div>
-          <div id="tileFour" class="col-xs-4 square" data-square="4" data-closed="1"></div>
-          <div id="tileFive" class="col-xs-4 square" data-square="5" data-closed="1"></div>
+          <div id="tileThree" class="col-xs-4 square" data-square="3" data-closed="0"></div>
+          <div id="tileFour" class="col-xs-4 square" data-square="4" data-closed="0"></div>
+          <div id="tileFive" class="col-xs-4 square" data-square="5" data-closed="0"></div>
         </div>
         <div class="row">
-          <div id="tileSix" class="col-xs-4 square" data-square="6" data-closed="1"></div>
-          <div id="tileSeven" class="col-xs-4 square" data-square="7" data-closed="1"></div>
-          <div id="tileEight" class="col-xs-4 square" data-square="8" data-closed="1"></div>
+          <div id="tileSix" class="col-xs-4 square" data-square="6" data-closed="0"></div>
+          <div id="tileSeven" class="col-xs-4 square" data-square="7" data-closed="0"></div>
+          <div id="tileEight" class="col-xs-4 square" data-square="8" data-closed="0"></div>
         </div>
       </div>
       <!-- GAMEBOARD -->
       <!-- FOOTER -->
       <div class="footer">
         <p>
-          David Powell
+          Site created by David Powell
+        </p>
+        <p>
+          Artwork created by OMOCAT
         </p>
       </div>
       <!-- FOOTER -->

@@ -7,16 +7,14 @@ let xImg = '<img class="played" src="./assets/pokeX.gif">';//change this if you 
 let oImg = '<img class="played" src="./assets/pokeO.gif">';//change this if you change the img file for o.
 let pokemonX = 'Bulbasaur';
 let pokemonO = 'Charmander';
-let turn = 0;//x's are even, o's are odd
+let turn = 0; //x's are even, o's are odd
 let boardArray = ["", "", "", "", "", "", "", "", ""];
 let gameOver = false;
 
 //user sign up
 const onSignUp = function () {
-  //console.log('sign up');
   $('#sign-up-modal').modal('show');
   $('#sign-up-submit').on('click',function(){
-    //console.log('submit pressed');
     //get text fields
     let email = $('#sign-up-email').val();
     let password = $('#sign-up-password').val();
@@ -43,15 +41,11 @@ const onSignUp = function () {
 
 //user log in
 const onLogIn = function () {
-  //console.log('logged in');
   $('#log-in-modal').modal('show');
   $('#log-in-submit').on('click',function(){
-    //console.log('log in pressed');
     //get text fields
     let email = $('#log-in-email').val();
     let password = $('#log-in-password').val();
-    // console.log(email);
-    // console.log(password);
 
     //put information into data object
     let data = {
@@ -77,15 +71,11 @@ const onLogIn = function () {
 
 //user changes password
 const onChangePassword = function () {
-  //console.log('logged in');
   $('#change-password-modal').modal('show');
   $('#change-password-submit').on('click',function(){
-    //console.log('change password pressed');
     //get text fields
     let oldPassword = $('#current-password').val();
     let NewPassword = $('#new-password').val();
-    // console.log(oldPassword);
-    // console.log(NewPassword);
 
     let data = {
       "passwords": {
@@ -93,7 +83,6 @@ const onChangePassword = function () {
         "new": NewPassword,
       }
     };
-    //console.log(data);
 
     //send data to api
     api.changePassword(data)
@@ -107,15 +96,16 @@ const onChangePassword = function () {
 
 //display who wins
 const onWinner = function (char) {
-  //console.log('logged in');
   if (char === 'x') {
     char = pokemonX;
   }
   else if (char === 'o') {
     char = pokemonO;
   }
+
   let string = char + ' is the winner!';
   $('#display-winner-modal').modal('show');
+  $('#winner-body').empty();
   $('#winner-body').prepend("<p>" + string + "</p>");
   gameOver = true;
   $('.square').data('closed', 1);
@@ -128,7 +118,6 @@ const onWinner = function (char) {
 
 //display tie
 const onTie = function () {
-  //console.log('logged in');
   let string = "Cats Game!";
   $('#display-winner-modal').modal('show');
   $('#winner-body').prepend("<p>" + string + "</p>");
@@ -143,7 +132,6 @@ const onTie = function () {
 
 //user log out
 const onLogOut = function () {
-  //console.log('logged out');
   api.signOut()
     .done(ui.signOutSuccess)
     .fail(ui.failure);
@@ -155,11 +143,9 @@ const onLogOut = function () {
 
 //user new game
 const onNewGame = function () {
-  //console.log('New Game');
   //let userID = api.appVar.app.user.id;
   let data = {};
   $('.square').data('closed', 0);
-  //console.log($('.square').data('closed'));
 
   api.newGame(data)
     .done(ui.createGameSuccess)
@@ -186,19 +172,14 @@ const updateGame = function (i, v, o) {
 //make changes to screen from what we loaded form server
 const displayLoad = (data) => {
   api.appVar.app.load = data.game;
-  //api.appVar.app.game = data.game;
 
   let arrayLoad = [];
   arrayLoad = api.appVar.app.load.cells;
 
   $('.square').each(function(){
-    //console.log(this);
-    //console.log(arrayLoad.length);
     for (let i = 0; i < arrayLoad.length; i++) {
-      //console.log('eeeee');
       let arrIndex = $(this).data('square');
       if (i === $(this).data('square')) {
-        //console.log('aaaaa');erve
         if (arrayLoad[$(this).data('square')] === 'x') {
           $(this).data('closed', 1);
           $(this).prepend(xImg);
@@ -222,13 +203,10 @@ const displayLoad = (data) => {
 
 //user loads games
 const onLoadGame = function () {
-  //console.log('logged in');
   $('#load-game-modal').modal('show');
   $('#load-game-submit').on('click',function(){
-    //console.log('log in pressed');
     //get text fields
     let gameId = $('#load-game-id').val();
-    //console.log(gameId);
     api.loadGame(gameId)
       .done(displayLoad)
       .fail(ui.failure);
@@ -239,17 +217,10 @@ const onLoadGame = function () {
 };
 
 const displayAllGames = function (data) {
-  console.log(data);
-  //console.log(data.games[10].id);
-  //console.log(data);
-  //console.log(data);
   $('#show-all-games-body').append("<p>Game #:    GameOver: </p>");
   for (let i = 0; i < data.games.length; i++) {
     $('#show-all-games-body').append("<p>" + data.games[i].id + " " +  data.games[i].over + "</p>");
   }
-  //let string = 'jidfjisdfroijdfgsjiodrfg';
-
-
 };
 
 //user sees all games
@@ -263,52 +234,41 @@ const onSeeAllGames = function () {
 
 //user clear board
 const onClearBoard = function () {
-  //console.log('Clear Board');
   //clear array
   boardArray = ["", "", "", "", "", "", "", "", ""];
-
+  $('.square').data('closed', 0);
   //clear images
   $('.played').remove();
   turn = 0;
 };
 
-//gameplay ---------------------------------------!!!!!!!!!!
-
 //check to see if a player has won.
 const checkWinner = function (array, char, turns) {
   //check colums
   if (array[0] === char && array[3] === char && array[6] === char && turns) {
-    //console.log(char + ' wins');
     onWinner(char);
   }
   else if (array[1] === char && array[4] === char && array[7] === char) {
-    //console.log(char + ' wins');
     onWinner(char);
   }
   else if (array[2] === char && array[5] === char && array[8] === char) {
-    //console.log(char + ' wins');
     onWinner(char);
   }
   //check rows
   else if (array[0] === char && array[1] === char && array[2] === char) {
-    //console.log(char + ' wins');
     onWinner(char);
   }
   else if (array[3] === char && array[4] === char && array[5] === char) {
-    //console.log(char + ' wins');
     onWinner(char);
   }
   else if (array[6] === char && array[7] === char && array[8] === char) {
-    //console.log(char + ' wins');
     onWinner(char);
   }
   //check diagonals
   else if (array[0] === char && array[4] === char && array[8] === char) {
-    //console.log(char + ' wins');
     onWinner(char);
   }
   else if (array[2] === char && array[4] === char && array[6] === char) {
-    //console.log(char + ' wins');
     onWinner(char);
   }
   else if (turns > 8) {
@@ -318,12 +278,10 @@ const checkWinner = function (array, char, turns) {
 
 //after click put x or o
 const onMove = function () {
-  //console.log(turn);
   //check to see if square is empty
   if ( ($(this).html()) !== xImg && ($(this).html()) !== oImg && ($(this).data('closed')) === 0 ) {
     //get index of square
     let arrIndex = $(this).data('square');
-    //console.log(arrIndex);
 
     if (turn%2 === 0) {
       //add img to tile

@@ -12,7 +12,6 @@ const signUp = (data) => $.ajax({
 const logIn = (data) => $.ajax({
     url: appVar.app.api + 'sign-in/',
     method: 'POST',
-    //data: data,
     data,
   });
 
@@ -22,7 +21,6 @@ const changePassword = (data) => $.ajax({
   headers: {
     Authorization: 'Token token=' + appVar.app.user.token,
   },
-  //data: data,
   data,
 });
 
@@ -40,7 +38,6 @@ const newGame = (data) => $.ajax({
   headers: {
     Authorization: 'Token token=' + appVar.app.user.token,
   },
-  //data: data,
   data,
 });
 
@@ -50,14 +47,12 @@ const updateTheGame = (data) => $.ajax({
   headers: {
     Authorization: 'Token token=' + appVar.app.user.token,
   },
-  //data: data,
   data,
 });
 
 const loadGame = (data) => $.ajax({
   url: appVar.app.api + 'games/' + data,
   method: 'GET',
-  //async: false,
   headers: {
     Authorization: 'Token token=' + appVar.app.user.token,
   },
@@ -66,7 +61,6 @@ const loadGame = (data) => $.ajax({
 const seeAllGames = () => $.ajax({
   url: appVar.app.api + 'games/',
   method: 'GET',
-  //async: false,
   headers: {
     Authorization: 'Token token=' + appVar.app.user.token,
   },
