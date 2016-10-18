@@ -252,6 +252,7 @@ webpackJsonp([0],[
 	};
 
 	var displayAllGames = function displayAllGames(data) {
+	  $('#show-all-games-body').empty();
 	  $('#show-all-games-body').append("<p>Game #:    GameOver: </p>");
 	  for (var i = 0; i < data.games.length; i++) {
 	    $('#show-all-games-body').append("<p>" + data.games[i].id + " " + data.games[i].over + "</p>");
