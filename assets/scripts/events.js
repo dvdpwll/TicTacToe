@@ -217,6 +217,7 @@ const onLoadGame = function () {
 };
 
 const displayAllGames = function (data) {
+  $('#show-all-games-body').empty();
   $('#show-all-games-body').append("<p>Game #:    GameOver: </p>");
   for (let i = 0; i < data.games.length; i++) {
     $('#show-all-games-body').append("<p>" + data.games[i].id + " " +  data.games[i].over + "</p>");
