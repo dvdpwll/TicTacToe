@@ -3,10 +3,10 @@ const api = require('./api');
 const ui = require('./ui');
 
 //variables
-let xImg = '<img class="played" src="./assets/pokeX.gif">';//change this if you change the img file for x.
-let oImg = '<img class="played" src="./assets/pokeO.gif">';//change this if you change the img file for o.
-let pokemonX = 'Bulbasaur';
-let pokemonO = 'Charmander';
+let xImg = '<img class="played" src="./assets/tictactoe_pizza.png">';//change this if you change the img file for x.
+let oImg = '<img class="played" src="./assets/tictactoe_donut.png">';//change this if you change the img file for o.
+let pokemonX = 'Pizza';
+let pokemonO = 'Donut';
 let turn = 0; //x's are even, o's are odd
 let boardArray = ["", "", "", "", "", "", "", "", ""];
 let gameOver = false;

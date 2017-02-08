@@ -2,17 +2,44 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 @import 'colors';
 
+body {
+  background-color: $gridBackground;
+}
+
 .gameboard {
-  background-color: $pureWhite;
+  background-color: $gridBackground;
   height: 450px;
   max-width: 450px;
 }
 
 .square {
-  border: 2px solid $gridColor;
   height: 150px;
   max-width: 150px;
   padding: 0;
+}
+
+#tileOne {
+  border-left: 2px dashed $gridLines;
+  border-right: 2px dashed $gridLines;
+  border-bottom: 2px dashed $gridLines;
+}
+
+#tileThree {
+  border-top: 2px dashed $gridLines;
+  border-right: 2px dashed $gridLines;
+  border-bottom: 2px dashed $gridLines;
+}
+
+#tileFive {
+  border-left: 2px dashed $gridLines;
+  border-top: 2px dashed $gridLines;
+  border-bottom: 2px dashed $gridLines;
+}
+
+#tileSeven {
+  border-left: 2px dashed $gridLines;
+  border-right: 2px dashed $gridLines;
+  border-top: 2px dashed $gridLines;
 }
 
 .square > img {
